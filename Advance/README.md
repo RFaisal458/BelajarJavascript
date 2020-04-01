@@ -332,3 +332,144 @@ console.log(cetakUrl("Whissper","Rafif"))
 ```
 
 Jadi kode di atas sendiri adalah contoh dari `Arguments`,pada bagian `console.log(cetakUrl("Whissper","Rafif"))` kita tetap memberikan parameter akan tetapi di bagian `function cetakUrl(){` kita mengosongkannya,secara otomatis/default javascript akan menampung parameter itu ke dalam array yang bernama `Arguments`,jadi `Arguments` ini kita bisa manfaatkan...
+
+Setelah kita memahami 3 konsep tersebut sekarang kita mulai memasuki materi utama yaitu `Closure`
+
+#### Closure
+
+Closure merupakan kombinasi antara function dan lingkungan leksikal(lexical scope) di dalam function tersebut(MDN)
+
+Closure adalah sebuah function ketika memiliki akses ke parent scope-nya,meskipun parent scope-nya sudah selesai dieksekusi(W3SCHOOL)
+
+Closure adalah sebuah function yang di kembalikan oleh function yang lain,yang memiliki akses ke lingkungan saat ia di ciptakan(CodeFellow)
+
+Closure adalah sebuah function yang sebelumnya sudah memiliki data,hasil dari function yang lain(Tehcsith)
+
+#### Lexical Scope
+
+```javascript
+
+	function init(){
+		let nama="Rafif Faisal Ghozi" // Local Variable
+		function tampilNama(){	// Inner Function	
+		return nama // Akses ke parent variable
+		}
+		console.log(tampilNama())
+	}
+	
+	init()
+
+```
+
+Jadi kode di atas sendiri adalah contoh dari `Closure` jadi singkatnya `Closure` sendiri ketika di sebuah function(parent) dan di dalammnya ada function(child) lagi,kemudian function yang menjadi child tersebut mempunyai ketergantungan ke function parentnya,seperti contoh di atas pada bagian `return nama` di akan mengambil variable dari parentnya
+
+Pada kasus kali ini pula kita akan coba memodifikasi kode programmnya,coba perhatikan kode di bawah ini:
+
+```javascript
+
+	function init(){
+		let nama="Rafif Faisal Ghozi" // Local Variable
+		function tampilNama(){	// Inner Function	
+		console.log(nama) // Akses ke parent variable
+		}
+		return tampilNama
+	}
+	
+	init()
+
+
+```
+
+Jika kita menjalankan kode program di atas tidak akan terjadi apa-apa,jadi untuk bisa menjalankannya kita harus menampung `init()` ke dalam sebuah variable,jadi seperti instansiasi pada sebuah class
+
+```javascript
+
+	function init(){
+		let nama="Rafif Faisal Ghozi" // Local Variable
+		function tampilNama(){	// Inner Function	
+		console.log(nama) // Akses ke parent variable
+		}
+		return tampilNama
+	}
+	
+	let panggilNama=init()
+	panggilNama()
+
+```
+Dengan menggunakan cari di atas kita nantinya bisa melakukan yang di namakan dengan `Factory Function`,Untuk contoh penggunaan dari `Factory Function` sendiri bisa kita lihat di bawah ini:
+
+```javascript
+
+	function ucapkanSalam(waktu){
+	
+	return function(nama){
+		console.log(`HALO,SELAMAT ${waktu},Semoga harimu ${nama}`
+	}	
+	
+	}
+	
+	let SelamatPagi=ucapkanSalam("Pagi")
+	let SelamatSiang=ucapkanSalam("Siang")
+	let SelamatMalam=ucapkanSalam("Malam")
+	
+	SelamatPagi("Rafif")
+	SelamatSiang("Whissper)
+
+```
+
+Nah...jadi dengan menggunakan `Closure` sendiri kita bisa menggunakan yang namanya `Factory Function`,Selain dari `Factory Function` juga `Closure` juga bisa berfungsi seolah-olah kita `membuat private method/variable`,Jadi untuk pembahasannya bisa di lihat di bawah ini:
+
+```javascript
+
+	let count=0
+	let add=function(){
+	return ++count
+	}
+	
+	console.log(add())
+	console.log(add())
+	console.log(add())	
+
+``` 
+
+Untuk kode program di atas sendiri tidak ada masalah dan jika jalankan pula,dia akan meng-outputkan `123`,Akan tetapi jika kita sudah banyak pemanggilan fungsi di atas hingga mencapai `100` dan terjadi perubahan pada variable count sendiri.
+
+```javascript
+
+	let count=0
+	let add=function(){
+	return ++count
+	}
+	
+	console.log(add())
+	count=0 // Terjadi Perubahan
+	console.log(add())
+	console.log(add())	
+
+``` 
+
+Jadi permasalannya variable `count` sendiri menjadi terpengaruh dan kita tidak menginginkannya,jadi untuk mengatasi masalah tersebut kita menggunakan closure
+
+```javascript
+
+	let add=function(){
+	
+	let count=0
+	return function(){
+	return ++count
+	}
+
+	}
+	
+	let a=add()
+	console.log(a())
+	console.log(a())
+	console.log(a()) 
+	
+
+```
+
+Dengan kode program di atas pula,kita jadi seolah-olah membuat sebuah private method/variable sendiri untuk menghitung,jadi `let count=0` tidak bisa di akses dari luar
+
+
+
