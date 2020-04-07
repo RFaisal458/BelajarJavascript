@@ -73,7 +73,7 @@ Kita bisa mengabaikan(ignore) beberapa value yang tidak ingin dipecah ke variabe
 
 ```
 
-##### Rest Parameter
+##### Spread Parameter
 
 ```javascript
 

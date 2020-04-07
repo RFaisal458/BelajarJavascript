@@ -702,7 +702,7 @@ Contoh pengimplementasian `Arrow Function`,perhatikan kode di bawah ini:
 
 ### 5.Higher Order Function
 
-Function yang beroperasi pada function yang lain.Baik itu di gunakan dalam argument,maupun sebagai return value(https://eloquentjavascript.net)
+Function yang beroperasi pada function yang lain.Baik itu di gunakan dalam argument,maupun sebagai return value( https://eloquentjavascript.net)
 
 Pada dasarnya sendiri pada javascript sendiri function di sebut dengan `First Class Function` inti dari javascript sendiri adalah function,Dan di javascript pula function di perlakukan sebagai object
 
@@ -1349,7 +1349,7 @@ Kita bisa mengabaikan(ignore) beberapa value yang tidak ingin dipecah ke variabe
 
 ```
 
-##### Rest Parameter
+##### Spread Parameter
 
 ```javascript
 
@@ -1583,7 +1583,7 @@ Jadi kode di atas sendiri `Destructuring` di dalam `Destructuring`,setelah kita 
 #### For...Of
 
 Creates a loop iterating over `iterable object`
-(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
 
 Jadi adalah sebuah looping yang di buat untuk mengulang atau menulusuri sebuah object yang `Iterable`,
 contoh object yang `Iterable` dan dapat di looping dengan `For...Of` sendiri bisa di lihat di bawah ini:
@@ -1673,7 +1673,7 @@ Dan perlu kita ketahui juga bahwa `Arguments` sendiri pada function itu berbeda 
 #### For...In
 
 Creates a loop only iterating over `enumerable`
-(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
+( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
 
 Jadi looping ini di gunakan hanya untuk mengulang `Enumerable`,`Enumerable` di sini maksudnya adalah property pada sebuah object
 
@@ -1693,4 +1693,222 @@ Jadi looping ini di gunakan hanya untuk mengulang `Enumerable`,`Enumerable` di s
 
 ```
 
+
+
+
+
+
+
+### 9.Spread Operator
+
+Memecah (expand / unpack) iterables menjadi single element
+( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+
+Seperti yang kita ketahui bahwa `iterable` sendiri ada :
+
+###### - String
+###### - Array
+###### - Arguments
+###### - NodeList
+###### - TypedArray
+###### - Map
+###### - Set
+###### - User-Defined Iterables
+
+```javascript
+
+	 let nama=['Rafif','Faisal','Ghozi']
+	 console.log(...nama) // Spread Operator
+	 console.log(...nama[0]) // Outputnya R a f i f
+
+```
+Jadi singkatnya `Spread Operator` sendiri memecah sebuah `iterable` menjadi tiap-tiap element,harap di perhatikan bukan menjadi variable tapi menjadi tiap-tiap element
+
+`Spread Operator` sendiri mempunyai berberapa fungsi di antaranya sendiri seperti di bawah ini :
+
+#### Menggabung Array
+
+Sebenarnya kita juga bisa menggabung array dengan sebuah method dari array sendiri yaitu `Array.prototype.concat()`,tapi dengan `Spread Operator` kita bisa lebih flesibel jika kita ingin menyisipkan sebuah array baru
+
+```javascript
+
+	let nama=['Rafif','Faisal','Ghozi']
+	let nama2=['Whissper','Zero']
+	let gabungNama=[...nama,"Baru",...nama2]
+
+	console.log(gabungNama)
+
+```
+
+`Spread Operator` juga bisa di gunakan untuk meng-copy sebuah array,tapi sebelumnya perhatikan kode di bawah ini:
+
+```javascript
+
+	let nama=['Rafif','Faisal','Ghozi']
+	let siswa=nama
+	siswa[0]="Whissper"
+	console.log(siswa) // Output:['Whissper','Faisal','Ghozi']
+	console.log(nama) // Output:['Whissper','Faisal','Ghozi']
+
+```
+
+Jika kita perhatikan kode di atas sendiri,jika di lihat sekilas kita juga seperti melakukan copy sebuah array,akan tetapi sebenarnya kode di atas pula tidak meng-copy sebuah array akan tetapi membuat sebuah referensi,jadi ketika kita melakukan perubahan pada array `siswa` maka array `nama` pula akan berubah
+
+Nah...dengan menggunakan `Spread Operator` sendiri kita bisa melakukan benar-benar copy tidak me-reference
+
+```javascript
+
+	let nama=['Rafif','Faisal','Ghozi']
+	let siswa=[...nama]
+	siswa[0]="Whissper"
+	console.log(siswa) // Output:['Whissper','Faisal','Ghozi']
+	console.log(nama) // Output:['Rafif','Faisal','Ghozi']
+
+```
+
+Untuk lebih bisa memahami lagi tentang `Spread Operator` perhatikan studi kasus di bawah ini yang akan membuat text animasi yang ketika di hover :
+
+```html
+
+	<!DOCTYPE html>
+		<html>
+		<head>
+		    <title>TEXT ANIMATION</title>
+		</head>
+		<style type="text/css">
+		    body{
+		        margin:0;
+		        padding:0;
+		        background-color:salmon;
+		    }
+		    h1{
+		        text-align: center;
+		        font-family:arial;
+		        font-size:80px;
+		        color:white;
+		        margin-top:30%;
+		        transition:.3s
+		    }
+		    span{
+		        display:inline-block;
+		        cursor:pointer;
+		        transition:.3s
+		    }
+
+		    h1 span:hover{
+		        transform: scale(2) translateY(-20px);
+		    }
+
+		</style>
+		<body>
+
+		    <h1>RAFIF</h1>
+
+		</body>
+		<script type="text/javascript" src="script.js"></script>
+	</html>
+
+
+```
+
+```javascript
+
+	let nama=document.querySelector('h1')
+	let el=nama.textContent
+	let pecah=[...el].map((currentValue,currentIndex)=>`<span class="nama">${currentValue}</span>`).join("")
+
+	nama.innerHTML=pecah
+
+
+```
+
+
+
+
+
+
+
+### 9.Rest Parameters
+
+Merepresentasikan argument pada function dengan jumlah yang tidak terbatas menjadi sebuah array
+( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/rest_parameters )
+
+```javascript
+
+	function myFunc(a,b,...myArgs){ // ...myArgs tidak boleh berada pada urutan pertama harus di akhir
+		console.log(myArgs) // [1,2,3,4,5]
+	}
+	myFunc(1,2,3,4,5)
+
+```
+
+Di atas sendiri adalah contoh dari penggunaan `Rest Parameter`,jika kita perhatikan `Rest Parameter` sendiri tidak boleh berada di awal urutan jika memaksakan akan muncul error seperti ini `Uncaught SyntaxError: Rest parameter must be last formal parameter`
+
+Singkatnnya `Rest Parameter` mengubah parameter yang tadinya variable menjadi sebuah array,jika kita ingin memanggil angka `1` dalam kode di atas kita hanya tinggal menuliskannya seperti ini `console.log(myArgs[0])`
+
+
+Di sini saya akan memberikan contoh penggunaan dari `Rest Parameter` dalam kode program yang pernah kita buat sebelumnya
+
+```javascript
+
+	function jumlahkan(...angka){
+		let sum=0
+		for(let a of angka){
+			sum+=a
+		}
+		return sum
+
+		// Jika menggunakan Reduce
+		// angka.reduce((previousValue,currentValue)=>previousValue+currentValue) 
+
+	}
+
+	console.log(jumlahkan(1,2,3,4,5))
+
+
+```
+
+`Rest Parameter` juga dapat di gunakan pada `Array Destructuring` dan juga `Object Destructuring`,perhatikan kode di bawah ini:
+
+```javascript
+
+	// Array Destructuring Dengan Rest Parameter
+
+	let kelompok=['Rafif','Whissper','Ghozi','Faisal']
+	let [ketua,wakilketua,...anggota]=kelompok
+	console.log(ketua) // Rafif
+	console.log(wakilketua) // Whissper
+	console.log(anggota) // ['Ghozi','Faisal']
+
+
+
+	// Object Destructuring Dengan Rest Parameter
+
+	let team={
+		pm:"Rafif",
+		frontEnd1:"Whissper",
+		frontEnd2:"Ghozi",
+		devOps:"Faisal"
+	}
+
+	let [pm,devOps,...myTeam]=team
+	console.log(pm) // Rafif
+	console.log(devOps) // Faisal
+	console.log(myTeam) // ['Whissper','Ghozi']
+
+```
+
+Untuk lebih sedikit komplek dan lebih paham perhatikan kode bawah ini untuk mengetahui sebuah type data dari sebuah nilai :
+
+```javascript
+
+	function filterBy(type,...values){
+		return values.filter((currentValue,currentIndex)=>typeof currentValue === type)
+	}
+
+	console.log(filterBy('number',1,2,"Rafif",true,2.3,false))
+
+```
+
+Jadi untuk penjelas kode di atas sendiri kita mengambil parameter ke satu sendiri menjadi sebuah patokan type sedangkan sisa dari parameter sendiri kita menjadi patokan untuk nilainya...
 
