@@ -1,4 +1,4 @@
-### 9.Rest Parameters
+### 10.Rest Parameters
 
 Merepresentasikan argument pada function dengan jumlah yang tidak terbatas menjadi sebuah array
 ( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/rest_parameters )

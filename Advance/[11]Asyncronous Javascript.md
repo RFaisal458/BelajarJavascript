@@ -1,4 +1,4 @@
-### 10.Asyncronous Javascript
+### 11.Asyncronous Javascript
 
 Sebelum kita mempelajari hal mengenai:
 
